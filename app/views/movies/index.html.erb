@@ -26,6 +26,7 @@
       </div>
       <div class="panel-body">
 
+      <% if user_signed_in? %>
         <div class="btn-group btn-group-justified">
           <%= form_tag watches_url, :class => 'btn-group btn-group-justified' do %>
             <input type="hidden" name="user_id" value="<%= current_user.id %>">
@@ -35,7 +36,6 @@
           <% end %>
         </div>
 
-
         <div class="btn-group btn-group-justified">
           <%= form_tag watch_url(movie.id), :class => 'btn-group btn-group-justified', :method => "delete" do %>
             <input type="hidden" name="user_id" value="<%= current_user.id %>">
@@ -43,12 +43,14 @@
             <button class="btn btn-danger"><i class="fa fa-times"></i>
             Remove from watch list</button>
           <% end %>
-
-
-
-
-
         </div>
+      <% end %>
+
+
+
+
+
+
         <div class="btn-group btn-group-justified">
         </div>
         <dl>

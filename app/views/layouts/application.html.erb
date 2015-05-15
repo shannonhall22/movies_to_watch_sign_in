@@ -48,8 +48,8 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <% if 1 > 2 %>
-          <li><a href="/users/edit">Oscar the Grouch</a></li>
+        <% if user_signed_in? %>
+          <li><a href="/users/edit">Signed in as <%= current_user.name %></a></li>
           <li><a href="/users/sign_out" data-method="delete">Sign out</a></li>
         <% else %>
           <li><a href="/users/sign_up">Sign up</a></li>
