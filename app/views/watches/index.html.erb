@@ -1,7 +1,7 @@
 <div class="page-header">
   <h1>
-    Movies
-    <%= link_to new_movie_url, :class => "btn btn-lg btn-success" do %>
+    Watches
+    <%= link_to new_watch_url, :class => "btn btn-lg btn-success" do %>
       <i class="fa fa-plus"></i>
     <% end  %>
   </h1>
@@ -11,68 +11,36 @@
 
 <div class="row">
   <div class="col-xs-12">
-    <input type="text" id="quicksearch" placeholder="Search Movies (start typing)" class="form-control">
+    <input type="text" id="quicksearch" placeholder="Search Watches (start typing)" class="form-control">
   </div>
 </div>
 
 <hr>
 
 <div class="row isotope-container">
-<% @movies.each do |movie| %>
+<% @watches.each do |watch| %>
   <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title"><%= movie.title %> (<%= movie.year %>)</h3>
+        <h3 class="panel-title">Watch #<%= watch.id %></h3>
       </div>
       <div class="panel-body">
-
-        <div class="btn-group btn-group-justified">
-          <%= form_tag watches_url, :class => 'btn-group btn-group-justified' do %>
-            <input type="hidden" name="user_id" value="<%= current_user.id %>">
-            <input type="hidden" name="movie_id" value="<%= movie.id %>">
-            <button class="btn btn-success"><i class="fa fa-plus"></i>
-                Add to watch list</button>
-          <% end %>
-        </div>
-
-
-        <div class="btn-group btn-group-justified">
-          <%= form_tag watch_url(movie.id), :class => 'btn-group btn-group-justified', :method => "delete" do %>
-            <input type="hidden" name="user_id" value="<%= current_user.id %>">
-            <input type="hidden" name="movie_id" value="<%= movie.id %>">
-            <button class="btn btn-danger"><i class="fa fa-times"></i>
-            Remove from watch list</button>
-          <% end %>
-
-
-
-
-
-        </div>
-        <div class="btn-group btn-group-justified">
-        </div>
         <dl>
-          <dt>Duration</dt>
-          <dd><%= movie.duration %></dd>
+          <dt>User</dt>
+          <dd><%= watch.user_id %></dd>
 
-          <dt>Description</dt>
-          <dd><%= movie.description %></dd>
-
-          <dt>Image url</dt>
-          <dd><%= link_to(image_tag(movie.image_url), movie_url(movie.id)) %></dd>
-
-          <dt>Director</dt>
-          <dd><%= link_to(movie.director.name, director_url(movie.director.id)) %></dd>
+          <dt>Movie</dt>
+          <dd><%= watch.movie_id %></dd>
 
         </dl>
         <div class="btn-group btn-group-justified">
-          <%= link_to movie_url(movie), :class => "btn btn-primary" do %>
+          <%= link_to watch_url(watch), :class => "btn btn-primary" do %>
             <i class="fa fa-search-plus"></i>
           <% end %>
-          <%= link_to edit_movie_url(movie), :class => "btn btn-warning" do %>
+          <%= link_to edit_watch_url(watch), :class => "btn btn-warning" do %>
             <i class="fa fa-edit"></i>
           <% end %>
-          <%= link_to movie_url(movie), :method => "delete", :data => { :confirm => "Do you really want to delete this movie?" }, :class => "btn btn-danger" do %>
+          <%= link_to watch_url(watch), :method => "delete", :data => { :confirm => "Do you really want to delete this watch?" }, :class => "btn btn-danger" do %>
             <i class="fa fa-trash-o"></i>
           <% end %>
         </div>

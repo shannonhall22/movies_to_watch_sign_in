@@ -1,5 +1,42 @@
 Rails.application.routes.draw do
 
+  devise_for :users
+  root 'movies#index'
+
+  # Routes for the Watch resource:
+  # CREATE
+  get '/watches/new',      :controller => 'watches', :action => 'new',    :as => 'new_watch'
+  post '/watches',         :controller => 'watches', :action => 'create', :as => 'watches'
+
+  # READ
+  get '/watches',          :controller => 'watches', :action => 'index'
+  get '/watches/:id',      :controller => 'watches', :action => 'show',   :as => 'watch'
+
+  # UPDATE
+  get '/watches/:id/edit', :controller => 'watches', :action => 'edit',   :as => 'edit_watch'
+  patch '/watches/:id',    :controller => 'watches', :action => 'update'
+
+  # DELETE
+  delete '/watches/:id',   :controller => 'watches', :action => 'destroy'
+  #------------------------------
+
+  # Routes for the User resource:
+  # CREATE
+  get '/users/new',      :controller => 'users', :action => 'new',    :as => 'new_user'
+  post '/users',         :controller => 'users', :action => 'create', :as => 'users'
+
+  # READ
+  get '/users',          :controller => 'users', :action => 'index'
+  get '/users/:id',      :controller => 'users', :action => 'show',   :as => 'user'
+
+  # UPDATE
+  get '/users/:id/edit', :controller => 'users', :action => 'edit',   :as => 'edit_user'
+  patch '/users/:id',    :controller => 'users', :action => 'update'
+
+  # DELETE
+  delete '/users/:id',   :controller => 'users', :action => 'destroy'
+  #------------------------------
+
   # Routes for the Role resource:
   # CREATE
   get '/roles/new',      :controller => 'roles', :action => 'new',    :as => 'new_role'

@@ -14,4 +14,8 @@ class Movie < ActiveRecord::Base
     end
     return actors
   end
+
+  def watches
+    Watch_List.where(:movie_id => self.id)
+  end
 end
