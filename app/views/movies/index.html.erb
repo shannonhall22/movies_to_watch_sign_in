@@ -22,34 +22,33 @@
   <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title"><%= movie.title %> (<%= movie.year %>)</h3>
+        <h3 class="panel-title"><%= movie.title %>
+        <small>(<%= movie.year %>)</small></h3>
       </div>
       <div class="panel-body">
 
-      <% if user_signed_in? %>
-        <div class="btn-group btn-group-justified">
-          <%= form_tag watches_url, :class => 'btn-group btn-group-justified' do %>
-            <input type="hidden" name="user_id" value="<%= current_user.id %>">
-            <input type="hidden" name="movie_id" value="<%= movie.id %>">
-            <button class="btn btn-success"><i class="fa fa-plus"></i>
-                Add to watch list</button>
-          <% end %>
-        </div>
-
-        <div class="btn-group btn-group-justified">
-          <%= form_tag watch_url(movie.id), :class => 'btn-group btn-group-justified', :method => "delete" do %>
-            <input type="hidden" name="user_id" value="<%= current_user.id %>">
-            <input type="hidden" name="movie_id" value="<%= movie.id %>">
-            <button class="btn btn-danger"><i class="fa fa-times"></i>
-            Remove from watch list</button>
-          <% end %>
-        </div>
-      <% end %>
-
-
-
-
-
+  <!-- If the movie ID equals the watches movie id -->
+        <% if Watch.where(user_id: current_user.id, movie_id: movie.id).first %>
+          <div class="btn-group btn-group-justified">
+            <%= form_tag watch_url(movie.id), :class => 'btn-group btn-group-justified', :method => "delete" do %>
+              <input type="hidden" name="user_id" value="<%= current_user.id %>">
+              <input type="hidden" name="movie_id" value="<%= movie.id %>">
+              <input type="hidden" name="movie_title" value="<%= movie.title %>">
+              <button class="btn btn-danger"><i class="fa fa-times"></i>
+              Remove from watch list</button>
+            <% end %>
+          </div>
+        <% else %>
+          <div class="btn-group btn-group-justified">
+            <%= form_tag watches_url, :class => 'btn-group btn-group-justified' do %>
+              <input type="hidden" name="user_id" value="<%= current_user.id %>">
+              <input type="hidden" name="movie_id" value="<%= movie.id %>">
+              <input type="hidden" name="movie_title" value="<%= movie.title %>">
+              <button class="btn btn-success"><i class="fa fa-plus"></i>
+                  Add to watch list</button>
+            <% end %>
+          </div>
+        <% end %>
 
         <div class="btn-group btn-group-justified">
         </div>

@@ -16,8 +16,8 @@
               <dt>Movie Watchlist</dt>
               <dd>
                 <ul class="list-group">
-                  <%= @user.watches.each do |watch| %>
-                    <li class="list-group-item"><%= watch.id %></li>
+                  <% @user.watches.each do |watch| %>
+                    <li class="list-group-item"><%= watch.movie_title %></li>
                   <% end %>
                 </ul>
               </dd>

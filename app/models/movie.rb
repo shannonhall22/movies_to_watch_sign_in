@@ -16,6 +16,7 @@ class Movie < ActiveRecord::Base
   end
 
   def watches
-    Watch_List.where(:movie_id => self.id)
+    Watch.where(:movie_id => self.id)
   end
+
 end
